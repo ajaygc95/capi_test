@@ -40,7 +40,12 @@ function ItemCard() {
           <GoToCartButton primary>Go to Cart</GoToCartButton>
         </Link>
       </ButtonWrapper>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        hideProgressBar={false}
+        newestOnTop={false}
+        autoClose={500}
+      />
     </MainContainer>
   );
 }
