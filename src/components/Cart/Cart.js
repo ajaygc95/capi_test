@@ -19,6 +19,7 @@ import {
   CheckoutButton,
   ArrowIcon,
 } from "./Cart.element";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
@@ -73,10 +74,12 @@ function Cart() {
         <TotalLine>Total: ${totalPrice}</TotalLine>
       </CartTotal>
       <ButtonWrapper>
-        <CheckoutButton primary disabled={cart.length === 0}>
-          Checkout
-          <ArrowIcon />
-        </CheckoutButton>
+        <Link to="/checkout">
+          <CheckoutButton primary disabled={cart.length === 0}>
+            Checkout
+            <ArrowIcon />
+          </CheckoutButton>
+        </Link>
       </ButtonWrapper>
     </MainContainer>
   );

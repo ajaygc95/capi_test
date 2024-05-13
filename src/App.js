@@ -1,4 +1,4 @@
-import { Navbar } from "./components";
+import { Checkout, Navbar } from "./components";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Home from "./components/pages/HomePage/Home";
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ItemCard />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </CartProvider>
     </Router>
