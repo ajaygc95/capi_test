@@ -1,6 +1,6 @@
 // src/components/ItemCard/ItemCard.js
-import React, { useContext } from "react";
-import { itemData } from "./ItemData";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   MainContainer,
   ItemsContainer,
@@ -18,17 +18,37 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ItemCard() {
-  const { addToCart, message } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/products/")
+      .then((response) => {
+        setItems(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading items: {error.message}</div>;
 
   return (
     <MainContainer>
       <h1>Shop</h1>
       <ItemsContainer>
-        {itemData.map((item) => (
+        {items.map((item) => (
           <ItemContainer key={item.id}>
-            <ItemImage src={item.image} alt="item" />
-            <ItemPrice>${item.price}</ItemPrice>
+            <ItemImage src={item.image_url} alt="item" />
             <ItemDescription>{item.name}</ItemDescription>
+            <ItemPrice>${item.price}</ItemPrice>
+
             <AddToCartButton onClick={() => addToCart(item)}>
               Add to Cart
             </AddToCartButton>
