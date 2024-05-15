@@ -1,6 +1,4 @@
-// src/components/ItemCard/ItemCard.js
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
 import {
   MainContainer,
   ItemsContainer,
@@ -16,12 +14,11 @@ import { CartContext } from "../CartContext";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { itemData } from "./ItemData";
 
 function ItemCard() {
   const { addToCart } = useContext(CartContext);
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [items, setItems] = useState(itemData); // use itemData directly
 
   const handleAddToCart = (item) => {
     addToCart(item);
@@ -33,29 +30,13 @@ function ItemCard() {
     });
   };
 
-  useEffect(() => {
-    axios
-      .get("http://54.176.122.21/api/products/")
-      .then((response) => {
-        setItems(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error loading items: {error.message}</div>;
-
   return (
     <MainContainer>
       <h1>Shop</h1>
       <ItemsContainer>
         {items.map((item) => (
           <ItemContainer key={item.id}>
-            <ItemImage src={item.image_url} alt="item" />
+            <ItemImage src={item.image} alt="item" />
             <ItemDescription>{item.name}</ItemDescription>
             <ItemPrice>${item.price}</ItemPrice>
 
