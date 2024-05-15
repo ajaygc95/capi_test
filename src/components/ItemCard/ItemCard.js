@@ -23,6 +23,16 @@ function ItemCard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    window.fbq("track", "AddToCart", {
+      value: item.price,
+      currency: "USD",
+      content_ids: [item.id],
+      content_type: "product",
+    });
+  };
+
   useEffect(() => {
     axios
       .get("http://54.176.122.21/api/products/")
@@ -49,7 +59,7 @@ function ItemCard() {
             <ItemDescription>{item.name}</ItemDescription>
             <ItemPrice>${item.price}</ItemPrice>
 
-            <AddToCartButton onClick={() => addToCart(item)}>
+            <AddToCartButton onClick={() => handleAddToCart(item)}>
               Add to Cart
             </AddToCartButton>
           </ItemContainer>
