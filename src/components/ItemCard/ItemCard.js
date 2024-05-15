@@ -25,7 +25,7 @@ function ItemCard() {
 
   useEffect(() => {
     axios
-      .get("http://54.176.122.21:8000/api/products/")
+      .get("http://54.176.122.21/api/products/")
       .then((response) => {
         setItems(response.data);
         setLoading(false);
