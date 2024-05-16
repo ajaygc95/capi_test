@@ -1,4 +1,3 @@
-// src/components/Checkout/Checkout.js
 import React from "react";
 import {
   CheckoutContainer,
@@ -19,8 +18,11 @@ import {
   RighInfoContainer,
   TotalContainerBox,
 } from "./Checkout.element";
+import { useLocation } from "react-router-dom";
 
 function Checkout() {
+  const location = useLocation();
+  const totalPrice = location.state ? location.state.totalPrice : 0;
   return (
     <MainContainer>
       <CheckoutTitle>Checkout</CheckoutTitle>
@@ -71,9 +73,9 @@ function Checkout() {
         </InfoContainer>
         <RighInfoContainer>
           <TotalContainer>
-            <TotalLine>Subtotal: $100</TotalLine>
+            <TotalLine>Subtotal: ${totalPrice}</TotalLine>
             <TotalLine>Tax: $0</TotalLine>
-            <TotalLine>Total: $100</TotalLine>
+            <TotalLine>Total: ${totalPrice}</TotalLine>
             <FormSubmitButton type="submit">Confirm Pay</FormSubmitButton>
           </TotalContainer>
         </RighInfoContainer>

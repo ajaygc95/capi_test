@@ -5,6 +5,8 @@ import Home from "./components/pages/HomePage/Home";
 import ItemCard from "./components/ItemCard/ItemCard";
 import Cart from "./components/Cart/Cart";
 import { CartProvider } from "./components/CartContext";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
+
 function App() {
   return (
     <Router>
@@ -16,6 +18,7 @@ function App() {
           <Route path="/products" element={<ItemCard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </CartProvider>
     </Router>

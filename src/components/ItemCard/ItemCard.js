@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   MainContainer,
   ItemsContainer,
@@ -18,10 +19,20 @@ import { itemData } from "./ItemData";
 
 function ItemCard() {
   const { addToCart } = useContext(CartContext);
-  const [items, setItems] = useState(itemData); // use itemData directly
+  const [itemdata, setItemdata] = useState(itemData);
+  const [items, setItems] = useState(itemData);
 
   const handleAddToCart = (item) => {
     addToCart(item);
+    axios
+      .post("http://127.0.0.1:8000/api/cart/", item)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     window.fbq("track", "AddToCart", {
       value: item.price,
       currency: "USD",
@@ -30,16 +41,35 @@ function ItemCard() {
     });
   };
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/api/products/")
+      .then((response) => {
+        setItems(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading items: {error.message}</div>;
   return (
     <MainContainer>
       <h1>Shop</h1>
       <ItemsContainer>
-        {items.map((item) => (
+        {itemdata.map((item) => (
           <ItemContainer key={item.id}>
-            <ItemImage src={item.image} alt="item" />
-            <ItemDescription>{item.name}</ItemDescription>
-            <ItemPrice>${item.price}</ItemPrice>
-
+            <Link to={`/product/${item.id}`}>
+              <ItemImage src={item.image} alt="item" />
+              <ItemDescription>{item.name}</ItemDescription>
+              <ItemPrice>${item.price}</ItemPrice>
+            </Link>
             <AddToCartButton onClick={() => handleAddToCart(item)}>
               Add to Cart
             </AddToCartButton>

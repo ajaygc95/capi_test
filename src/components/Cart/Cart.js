@@ -1,4 +1,3 @@
-// src/components/Cart/Cart.js
 import React, { useContext } from "react";
 import { CartContext } from "../CartContext";
 import {
@@ -19,15 +18,27 @@ import {
   CheckoutButton,
   ArrowIcon,
 } from "./Cart.element";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
-
+  const location = useLocation();
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+  const handleCheckout = () => {
+    window.fbq("track", "InitiateCheckout", {
+      value: totalPrice,
+      currency: "USD",
+      contents: cart.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+        item_price: item.price,
+      })),
+      content_type: "product",
+    });
+  };
 
   return (
     <MainContainer>
@@ -74,8 +85,17 @@ function Cart() {
         <TotalLine>Total: ${totalPrice}</TotalLine>
       </CartTotal>
       <ButtonWrapper>
-        <Link to="/checkout">
-          <CheckoutButton primary disabled={cart.length === 0}>
+        <Link
+          to={{
+            pathname: "/checkout",
+            state: { totalPrice: totalPrice },
+          }}
+        >
+          <CheckoutButton
+            primary
+            disabled={cart.length === 0}
+            onClick={handleCheckout}
+          >
             Checkout
             <ArrowIcon />
           </CheckoutButton>
