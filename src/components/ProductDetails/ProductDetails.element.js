@@ -7,6 +7,7 @@ export const MainContainer = styled(Container)`
 `;
 
 export const ProductTitle = styled.h1`
+  padding: 10px;
   font-size: 2rem;
   margin-bottom: 1rem;
 `;

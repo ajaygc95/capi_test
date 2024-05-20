@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import {
   ProductContainer,
   ProductImage,
@@ -13,42 +14,68 @@ import {
   MainContainer,
 } from "./ProductDetails.element";
 import { CartContext } from "../CartContext";
-import { itemData } from "../ItemCard/ItemData";
+import { ClipLoader } from "react-spinners";
 
 function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
-  const product = itemData.find((item) => item.id === Number(id)); // find product in itemData
-
-  const handleAddToCart = () => {
-    addToCart(product);
-    window.fbq("track", "AddToCart", {
-      value: product.price,
-      currency: "USD",
-      content_ids: [product.id],
-      content_type: "product",
-    });
-  };
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    axios
+      .get(`https://capicore.azurewebsites.net/api/products/${id}/`)
+      .then((response) => {
+        setProduct(response.data);
+        setLoading(false);
+        // Send "ViewContent" event to Facebook Pixel
+        window.fbq("track", "ViewContent", {
+          content_ids: [response.data.id],
+          content_type: "product",
+          value: response.data.price,
+          currency: "USD",
+        });
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [id]);
+
+  const handleAddToCart = () => {
     if (product) {
-      // Send "ViewContent" event to Facebook Pixel
-      window.fbq("track", "ViewContent", {
-        content_ids: [product.id],
-        content_type: "product",
+      addToCart(product);
+      window.fbq("track", "AddToCart", {
         value: product.price,
         currency: "USD",
+        content_ids: [product.id],
+        content_type: "product",
       });
     }
-  }, [product]);
+  };
 
-  if (!product) return <div>Product not found</div>;
+  if (loading) {
+    return (
+      <MainContainer>
+        <ClipLoader size={150} color={"#123abc"} loading={loading} />
+      </MainContainer>
+    );
+  }
+
+  if (error) {
+    return <div>Error loading product: {error.message}</div>;
+  }
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <MainContainer>
       <ProductTitle>Product Details</ProductTitle>
       <ProductContainer>
-        <ProductImage src={product.image} alt={product.name} />
+        <ProductImage src={product.image_url} alt={product.name} />
         <ProductInfo>
           <ProductDetailsContainer>
             <ProductTitle>{product.name}</ProductTitle>
