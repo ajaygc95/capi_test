@@ -6,93 +6,52 @@ import { CartContext } from "../CartContext";
 import {
   Nav,
   NavbarContainer,
+  NavLogoContainer,
   NavLogo,
-  NavIcon,
   MobileIcon,
-  NavMenu,
-  NavItem,
-  NavItemBtn,
-  NavLinks,
-  NavBtnLink,
   CartIconBadge,
   CartIconContainer,
   CartIcon,
+  NavLinks,
+  LogoImage,
 } from "./Navbar.elements";
-import { Button } from "../../globalStyles";
+import logoImage from "../../images/shihtzu.png"; // Ensure you have a logo image in the specified path
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  };
-
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener("resize", showButton);
-
   const { cart, getTotalCount } = useContext(CartContext);
+
   return (
     <>
-      <IconContext.Provider value={{ color: "#4267b2" }}>
+      <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
           <NavbarContainer>
-            <NavLogo to="/" onClick={closeMobileMenu}>
-              <NavIcon />
-              CAPI TEST
-            </NavLogo>
+            <NavLogoContainer>
+              <NavLogo to="/" onClick={closeMobileMenu}>
+                Pixel
+              </NavLogo>
+              <LogoImage src={logoImage} alt="Logo" />
+            </NavLogoContainer>
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
-            <NavMenu onClick={handleClick} click={click}>
-              <NavItem>
-                <NavLinks to="/" onClick={closeMobileMenu}>
-                  Home
-                </NavLinks>
-              </NavItem>
-              <NavItem>
-                <NavLinks to="/products" onClick={closeMobileMenu}>
-                  Products
-                </NavLinks>
-              </NavItem>
-              <NavItem>
-                <NavLinks to="/cart" onClick={closeMobileMenu}>
-                  <CartIconContainer>
-                    <CartIcon />
-                    {getTotalCount() > 0 && (
-                      <CartIconBadge>{getTotalCount()}</CartIconBadge>
-                    )}
-                  </CartIconContainer>
-                </NavLinks>
-              </NavItem>
-              <NavItemBtn>
-                {button ? (
-                  <NavBtnLink to="/sign-up">
-                    <Button primary>SIGN UP</Button>
-                  </NavBtnLink>
-                ) : (
-                  <NavBtnLink to="/sign-up">
-                    <Button onClick={closeMobileMenu} fontBig primary>
-                      SIGN UP
-                    </Button>
-                  </NavBtnLink>
+            <NavLinks to="/cart" onClick={closeMobileMenu}>
+              <CartIconContainer>
+                <CartIcon />
+                {getTotalCount() > 0 && (
+                  <CartIconBadge>{getTotalCount()}</CartIconBadge>
                 )}
-              </NavItemBtn>
-            </NavMenu>
+              </CartIconContainer>
+            </NavLinks>
           </NavbarContainer>
         </Nav>
       </IconContext.Provider>
     </>
   );
 }
+
 export default Navbar;

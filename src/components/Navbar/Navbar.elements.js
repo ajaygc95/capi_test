@@ -1,15 +1,18 @@
 import styled from "styled-components";
-import { FaMeta } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { Container } from "../../globalStyles";
 import { FaShoppingCart } from "react-icons/fa";
 
+import "@fontsource/baloo-2";
+
 export const Nav = styled.nav`
-  height: 80px;
+  height: 150px;
+  background: #f8e8e8;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  position: sticky;
   top: 0;
   z-index: 999;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -18,24 +21,29 @@ export const Nav = styled.nav`
 export const NavbarContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
-  height: 80px;
-
+  align-items: center;
+  width: 100%;
   ${Container}
 `;
 
-export const NavLogo = styled(Link)`
-  color: black;
-  justify-self: flex-start;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 2rem;
+export const NavLogoContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1;
 `;
 
-export const NavIcon = styled(FaMeta)`
-  color: #4267b2 !important;
+export const NavLogo = styled(Link)`
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 5rem; 
+  font-family: "Baloo 2", cursive; 
   margin-right: 0.5rem;
+`;
+
+export const LogoImage = styled.img`
+  height: 50px; /* Adjust size as necessary */
 `;
 
 export const MobileIcon = styled.div`
@@ -47,95 +55,16 @@ export const MobileIcon = styled.div`
     top: 0;
     right: 0;
     transform: translate(-100%, 60%);
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
+    color: #000;
   }
-`;
-
-export const NavMenu = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style: none;
-  text-align: center;
-
-  @media screen and (max-width: 960px) {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 90vh;
-    position: absolute;
-    top: 80px;
-    left: ${({ click }) => (click ? 0 : "-100%")};
-    opacity: 1;
-    transition: all 0.5s ease;
-    background: #4267b2;
-  }
-`;
-
-export const NavItem = styled.li`
-  height: 80px;
-  border-bottom: 2px solid transparent;
-
-  &:hover {
-    border-bottom: 2px solid #4b59f7;
-  }
-
-  @media screen and (max-width: 960px) {
-    width: 100%;
-
-    &:hover {
-      border: none;
-    }
-  }
-`;
-
-export const NavItemBtn = styled.li`
-  @media screen and (max-width: 960px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 120px;
-  }
-`;
-
-export const NavLinks = styled(Link)`
-  color: black;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  height: 100%;
-
-  @media screen and (max-width: 960px) {
-    text-align: center;
-    padding: 2rem;
-    width: 100%;
-    display: table;
-
-    &:hover {
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-  }
-`;
-
-export const NavBtnLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 8px 16px;
-  height: 100%;
-  width: 100%;
-  border: none;
-  outline: none;
 `;
 
 export const CartIcon = styled(FaShoppingCart)`
-  font-size: 1.8rem;
-  color: #4267b2 !important;
-  margin-right: 0.5rem;
+  font-size: 2rem;
+  color: #000 !important;
+  margin-right: 1rem;
 `;
 
 export const CartIconBadge = styled.span`
@@ -147,6 +76,30 @@ export const CartIconBadge = styled.span`
   padding: 2px 6px;
   font-size: 12px;
 `;
+
 export const CartIconContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+`;
+
+export const NavLinks = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  padding: 0.5rem 1rem;
+  height: 100%;
+
+  @media screen and (max-width: 960px) {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+
+    &:hover {
+      color: #ff69b4;
+      transition: all 0.3s ease;
+    }
+  }
 `;

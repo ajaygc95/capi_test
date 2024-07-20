@@ -1,21 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
-  MainContainer,
   ItemsContainer,
   ItemContainer,
   ItemImage,
   ItemPrice,
   ItemDescription,
   AddToCartButton,
-  GoToCartButton,
-  ButtonWrapper,
+  Divider,
+  LeftCircleWrapper,
+  RightCircleWrapper,
+  Circle,
+  DividerText,
 } from "./ItemCard.element";
 import { CartContext } from "../CartContext";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ClipLoader } from "react-spinners";
+import { itemData } from "./ItemData";
 
 function ItemCard() {
   const { addToCart } = useContext(CartContext);
@@ -24,17 +27,31 @@ function ItemCard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("https://capicore.azurewebsites.net/api/products/")
-      .then((response) => {
-        setItems(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+    fetchItems();
   }, []);
+
+  const fetchItems = () => {
+    // Simulate fetching data from itemData
+    try {
+      setItems(itemData); // Set items to the imported itemData
+      setLoading(false);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    }
+  };
+  // useEffect(() => {
+  //   axios
+  //     .get("https://capicore.azurewebsites.net/api/products/")
+  //     .then((response) => {
+  //       setItems(response.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       setError(error);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   const handleAddToCart = (item) => {
     addToCart(item);
@@ -57,15 +74,28 @@ function ItemCard() {
 
   if (loading) {
     return (
-      <MainContainer>
+      <ItemsContainer>
         <ClipLoader size={150} color={"#123abc"} loading={loading} />
-      </MainContainer>
+      </ItemsContainer>
     );
   }
   if (error) return <div>Error loading items: {error.message}</div>;
+
   return (
-    <MainContainer>
-      <h1>Shop</h1>
+    <>
+      <Divider>
+        <LeftCircleWrapper>
+          {[...Array(25)].map((_, index) => (
+            <Circle key={index} />
+          ))}
+        </LeftCircleWrapper>
+        <DividerText>PIXEL</DividerText>
+        <RightCircleWrapper>
+          {[...Array(25)].map((_, index) => (
+            <Circle key={index} />
+          ))}
+        </RightCircleWrapper>
+      </Divider>
       <ItemsContainer>
         {items.map((item) => (
           <ItemContainer key={item.id}>
@@ -80,18 +110,13 @@ function ItemCard() {
           </ItemContainer>
         ))}
       </ItemsContainer>
-      <ButtonWrapper>
-        <Link to="/cart">
-          <GoToCartButton primary>Go to Cart</GoToCartButton>
-        </Link>
-      </ButtonWrapper>
       <ToastContainer
         position="top-center"
         hideProgressBar={false}
         newestOnTop={false}
         autoClose={500}
       />
-    </MainContainer>
+    </>
   );
 }
 

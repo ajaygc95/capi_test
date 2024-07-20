@@ -1,78 +1,98 @@
 import styled from "styled-components";
-import { Button, Container } from "../../globalStyles";
+import { Button } from "../../globalStyles";
 
-export const MainContainer = styled(Container)`
-  margin-top: 20px;
+// Horizontal Divider with Pink Circles and PIXEL Text
+export const Divider = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  width: 90%; /* Matches the width of the item card body */
+  max-width: 1500px; /* Max width to match the item card body */
+  height: 60px; /* Height of the divider */
+  margin: 0 auto; /* Center the divider horizontally */
+  margin-bottom: 20px; /* Space below the divider */
+  position: relative;
+  justify-content: center; /* Center the content horizontally */
 `;
 
-export const Title = styled.h1`
-  margin-top: 10px;
-  margin-bottom: 20px;
+export const Circle = styled.div`
+  width: 8px;
+  height: 8px;
+  background-color: pink; /* Color of the circles */
+  border-radius: 50%;
 `;
 
-export const Message = styled.p`
-  color: green;
-  margin-bottom: 20px;
+export const LeftCircleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Gap between each circle */
+  margin-right: 15px; /* Space between circles and PIXEL text */
 `;
 
+export const RightCircleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Gap between each circle */
+  margin-left: 15px; /* Space between circles and PIXEL text */
+`;
+
+export const DividerText = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Text color */
+  white-space: nowrap; /* Prevent text from wrapping */
+`;
+// Container for items
 export const ItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: auto;
+  max-width: 1500px;
 `;
 
 export const ItemContainer = styled.div`
-  flex: 0 0 calc((100% - 40px) / 3); /* Initially show 3 items per row */
+  flex: 0 0 calc((100% - 40px) / 2); /* Show 2 items per row */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
-  padding: 20px;
+  margin: 0 20px 20px 20px;
   box-sizing: border-box;
-
-  @media screen and (max-width: 992px) {
-    flex: 0 0 calc((100% - 30px) / 2); /* On screens smaller than 992px, show 2 items per row */
-  }
-
-  @media screen and (max-width: 768px) {
-    flex: 0 0 100%; /* On screens smaller than 768px, show 1 item per row */
-  }
-
-  &:nth-child(odd) {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
-
-  &:nth-child(even) {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 400px; /* Set max-width to 400px */
+  height: 550px; /* Increased height to fit title and price */
 `;
 
 export const ItemImage = styled.img`
+  width: 100%; /* Ensure image takes 100% of the container width */
+  object-fit: cover; /* Ensure the image covers the container area */
+  margin: 0; /* Remove any margin */
+  padding: 0; /* Remove any padding */
+`;
+
+export const ItemDetails = styled.div`
   width: 100%;
-  max-width: 300px; /* Limit the maximum width of the image */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover;
-  margin-bottom: 15px;
+  height: 40%; /* Remaining height for details section */
+  text-align: center;
+  padding: 10px; /* Space around text */
+  background-color: #fef6e4; /* Match background color of item card */
+  box-sizing: border-box;
 `;
 
 export const ItemPrice = styled.p`
   font-size: 18px;
-  margin-bottom: 15px;
+  margin: 5px 0; /* Adjust margin for spacing */
+  color: #333;
+  text-align: center;
 `;
 
 export const ItemDescription = styled.p`
   font-size: 16px;
-  margin-bottom: 15px;
+  margin: 5px 0; /* Adjust margin for spacing */
+  color: #555;
+  text-align: center;
 `;
 
 export const AddToCartButton = styled(Button)`
@@ -81,10 +101,13 @@ export const AddToCartButton = styled(Button)`
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-`;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Adds some space between button and description */
 
-export const CartIconContainer = styled.div`
-  position: relative;
+  &:hover {
+    background-color: #004d40;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -101,4 +124,9 @@ export const GoToCartButton = styled(Button)`
   padding: 20px;
   margin-top: 20px;
   background-color: teal;
+  color: #fff;
+
+  &:hover {
+    background-color: #004d40;
+  }
 `;

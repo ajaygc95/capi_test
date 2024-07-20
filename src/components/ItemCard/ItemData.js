@@ -1,62 +1,70 @@
-// ItemData.js
+// src/components/itemcard/itemdata.js
+
+import bag from "../../images/bag.jpeg";
+import shihtzucup from "../../images/shihtzu_mug.jpeg";
+import shihtzu_on_cup_pink from "../../images/shihtzu_on_cup_pink.jpeg";
+import shihtzu_on_sweatshirt from "../../images/sweatshirt_shihtzu.jpeg";
+import shih_tzu_picture_on_pillow from "../../images/shih_tzu_picture_on_pillow.jpeg";
+import shih_tzu_coffee_mug from "../../images/shihtzu_plastic_coffee_mug.jpeg";
+import watter_bottle from "../../images/watter_bottle.jpeg";
+import phone_case from "../../images/phone_case.jpeg";
+import plush_doll from "../../images/plush_doll.jpg";
+
 export const itemData = [
   {
     id: 1,
-    name: "Leather Bag",
-    image:
-      "https://boozercart.s3.us-west-1.amazonaws.com/media/bag_with_belt.jpeg",
-    price: 99.99,
-    description: "This is a beautiful cup.",
+    name: "Plush Doll",
+    image_url: plush_doll,
+    price: 24.99,
+    description: "A cute and soft plush doll perfect for cuddles.",
   },
   {
     id: 2,
-    name: "Stylish Bag",
-    image: "https://boozercart.s3.us-west-1.amazonaws.com/media/bag.jpeg",
-    price: 144.99,
-    description: "This is a stylish bag.",
+    name: "Shihtzu Mug",
+    image_url: shihtzucup,
+    price: 14.99,
+    description: "A mug featuring a Shihtzu dog design.",
   },
   {
     id: 3,
-    name: "Trendy Bag",
-    image: "https://boozercart.s3.us-west-1.amazonaws.com/media/bag2.jpeg",
-    price: 109.89,
-    description: "This is a trendy bag.",
+    name: "Shihtzu on Pink Cup",
+    image_url: shihtzu_on_cup_pink,
+    price: 16.99,
+    description: "A pink cup adorned with a Shihtzu dog.",
   },
   {
     id: 4,
-    name: "Party Shoes",
-    image:
-      "https://boozercart.s3.us-west-1.amazonaws.com/media/shoes_brown.jpeg",
-    price: 119,
-    description: "This is a bag with a belt.",
+    name: "Shihtzu Sweatshirt",
+    image_url: shihtzu_on_sweatshirt,
+    price: 39.99,
+    description: "A cozy sweatshirt featuring a Shihtzu dog graphic.",
   },
   {
     id: 5,
-    name: "Office Bag",
-    image: "https://boozercart.s3.us-west-1.amazonaws.com/media/bag_cup.jpeg",
-    price: 119.99,
-    description: "This is a bag with a belt.",
+    name: "Shihtzu Picture on Pillow",
+    image_url: shih_tzu_picture_on_pillow,
+    price: 29.99,
+    description: "A decorative pillow with a Shihtzu dog print.",
   },
   {
     id: 6,
-    name: "Cup Set",
-    image: "https://boozercart.s3.us-west-1.amazonaws.com/media/cup.jpeg",
-    price: 19.99,
-    description: "This is a bag with a belt.",
+    name: "Shihtzu Coffee Mug",
+    image_url: shih_tzu_coffee_mug,
+    price: 12.99,
+    description: "A durable coffee mug with a Shihtzu dog.",
   },
   {
     id: 7,
-    name: "Coffe Cup",
-    image: "https://boozercart.s3.us-west-1.amazonaws.com/media/cup-2.jpeg",
-    price: 9.99,
-    description: "This is a bag with a belt.",
+    name: "Water Bottle",
+    image_url: watter_bottle,
+    price: 17.99,
+    description: "A stylish water bottle to keep you hydrated.",
   },
   {
     id: 8,
-    name: "Cup for Cat",
-    image:
-      "https://boozercart.s3.us-west-1.amazonaws.com/media/bag_cup_cat.jpeg",
-    price: 19.99,
-    description: "This is a bag with a belt.",
+    name: "Phone Case",
+    image_url: phone_case,
+    price: 21.99,
+    description: "A protective phone case with a unique design.",
   },
 ];
