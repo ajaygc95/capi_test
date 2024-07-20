@@ -7,7 +7,7 @@ import "@fontsource/baloo-2";
 
 export const Nav = styled.nav`
   height: 150px;
-  background: #f8e8e8;
+  background: #8bc0c6;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,8 +37,8 @@ export const NavLogo = styled(Link)`
   color: #000;
   cursor: pointer;
   text-decoration: none;
-  font-size: 5rem; 
-  font-family: "Baloo 2", cursive; 
+  font-size: 5rem;
+  font-family: "Baloo 2", cursive;
   margin-right: 0.5rem;
 `;
 

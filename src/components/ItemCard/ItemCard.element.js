@@ -17,7 +17,7 @@ export const Divider = styled.div`
 export const Circle = styled.div`
   width: 8px;
   height: 8px;
-  background-color: #f8e8e8; /* Color of the circles */
+  background-color: #8bc0c6; /* Color of the circles */
   border-radius: 50%;
 `;
 

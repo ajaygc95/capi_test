@@ -27,31 +27,17 @@ function ItemCard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchItems();
+    axios
+      .get("https://capicore.azurewebsites.net/api/products/")
+      .then((response) => {
+        setItems(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
   }, []);
-
-  const fetchItems = () => {
-    // Simulate fetching data from itemData
-    try {
-      setItems(itemData); // Set items to the imported itemData
-      setLoading(false);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
-  };
-  // useEffect(() => {
-  //   axios
-  //     .get("https://capicore.azurewebsites.net/api/products/")
-  //     .then((response) => {
-  //       setItems(response.data);
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       setError(error);
-  //       setLoading(false);
-  //     });
-  // }, []);
 
   const handleAddToCart = (item) => {
     addToCart(item);
