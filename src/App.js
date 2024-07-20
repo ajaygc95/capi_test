@@ -1,7 +1,6 @@
 import { Checkout, Navbar } from "./components";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
-import Home from "./components/pages/HomePage/Home";
 import ItemCard from "./components/ItemCard/ItemCard";
 import Cart from "./components/Cart/Cart";
 import { CartProvider } from "./components/CartContext";
@@ -14,7 +13,7 @@ function App() {
         <GlobalStyle />
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<ItemCard />} />
           <Route path="/products" element={<ItemCard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
