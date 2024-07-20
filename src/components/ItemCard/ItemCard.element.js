@@ -17,7 +17,7 @@ export const Divider = styled.div`
 export const Circle = styled.div`
   width: 8px;
   height: 8px;
-  background-color: pink; /* Color of the circles */
+  background-color: #f8e8e8; /* Color of the circles */
   border-radius: 50%;
 `;
 
@@ -25,14 +25,14 @@ export const LeftCircleWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px; /* Gap between each circle */
-  margin-right: 15px; /* Space between circles and PIXEL text */
+  margin-right: 10px; /* Space between circles and PIXEL text */
 `;
 
 export const RightCircleWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px; /* Gap between each circle */
-  margin-left: 15px; /* Space between circles and PIXEL text */
+  margin-left: 10px; /* Space between circles and PIXEL text */
 `;
 
 export const DividerText = styled.div`
@@ -41,6 +41,7 @@ export const DividerText = styled.div`
   color: #333; /* Text color */
   white-space: nowrap; /* Prevent text from wrapping */
 `;
+
 // Container for items
 export const ItemsContainer = styled.div`
   display: flex;
@@ -49,6 +50,11 @@ export const ItemsContainer = styled.div`
   width: 80%;
   margin: auto;
   max-width: 1500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 10px; /* Add padding on smaller screens */
+  }
 `;
 
 export const ItemContainer = styled.div`
@@ -63,6 +69,12 @@ export const ItemContainer = styled.div`
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 400px; /* Set max-width to 400px */
   height: 550px; /* Increased height to fit title and price */
+
+  @media (max-width: 768px) {
+    flex: 0 0 100%; /* Take full width on mobile */
+    max-width: 100%; /* Full width on mobile */
+    height: auto; /* Auto height for flexibility */
+  }
 `;
 
 export const ItemImage = styled.img`
@@ -86,6 +98,7 @@ export const ItemPrice = styled.p`
   margin: 5px 0; /* Adjust margin for spacing */
   color: #333;
   text-align: center;
+  text-decoration: none; /* Remove underline */
 `;
 
 export const ItemDescription = styled.p`
@@ -93,6 +106,7 @@ export const ItemDescription = styled.p`
   margin: 5px 0; /* Adjust margin for spacing */
   color: #555;
   text-align: center;
+  text-decoration: none; /* Remove underline */
 `;
 
 export const AddToCartButton = styled(Button)`
