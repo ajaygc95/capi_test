@@ -1,4 +1,4 @@
-import { Checkout, Navbar } from "./components";
+import { Checkout, Navbar, Policy, WebHook } from "./components";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import ItemCard from "./components/ItemCard/ItemCard";
@@ -17,6 +17,8 @@ function App() {
           <Route path="/products" element={<ItemCard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/webhooks" element={<WebHook />} />
+          <Route path="/policy" element={<Policy />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </CartProvider>
