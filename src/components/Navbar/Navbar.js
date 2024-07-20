@@ -1,5 +1,4 @@
-// src/components/Navbar/Navbar.js
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { CartContext } from "../CartContext";
@@ -12,8 +11,9 @@ import {
   CartIconBadge,
   CartIconContainer,
   CartIcon,
-  NavLinks,
   LogoImage,
+  MobileMenu,
+  MobileMenuItem,
 } from "./Navbar.elements";
 import logoImage from "../../images/shihtzu.png"; // Ensure you have a logo image in the specified path
 
@@ -23,7 +23,7 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const { cart, getTotalCount } = useContext(CartContext);
+  const { getTotalCount } = useContext(CartContext);
 
   return (
     <>
@@ -39,15 +39,19 @@ function Navbar() {
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
-            <NavLinks to="/cart" onClick={closeMobileMenu}>
-              <CartIconContainer>
-                <CartIcon />
-                {getTotalCount() > 0 && (
-                  <CartIconBadge>{getTotalCount()}</CartIconBadge>
-                )}
-              </CartIconContainer>
-            </NavLinks>
           </NavbarContainer>
+          {click && (
+            <MobileMenu>
+              <MobileMenuItem to="/cart" onClick={closeMobileMenu}>
+                <CartIconContainer>
+                  <CartIcon />
+                  {getTotalCount() > 0 && (
+                    <CartIconBadge>{getTotalCount()}</CartIconBadge>
+                  )}
+                </CartIconContainer>
+              </MobileMenuItem>
+            </MobileMenu>
+          )}
         </Nav>
       </IconContext.Provider>
     </>

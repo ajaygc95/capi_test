@@ -83,23 +83,32 @@ export const CartIconContainer = styled.div`
   align-items: center;
 `;
 
-export const NavLinks = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #000;
-  padding: 0.5rem 1rem;
-  height: 100%;
+export const MobileMenu = styled.div`
+  display: none;
 
   @media screen and (max-width: 960px) {
-    text-align: center;
-    padding: 2rem;
+    display: block;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: #8bc0c6;
     width: 100%;
-    display: table;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+`;
 
-    &:hover {
-      color: #ff69b4;
-      transition: all 0.3s ease;
-    }
+export const MobileMenuItem = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+
+  &:hover {
+    background: #b3e1e1;
+    transition: all 0.3s ease;
   }
 `;

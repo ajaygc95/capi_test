@@ -1,37 +1,129 @@
-// src/components/Cart/Cart.element.js
 import styled from "styled-components";
-import { Button, Container } from "../../globalStyles";
+import { Button } from "../../globalStyles";
 import { FaArrowRight } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-export const MainContainer = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const CartHeader = styled.h1`
+  margin-top: 40px;
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 export const CartItems = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
   padding: 20px;
-  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
 `;
 
-export const CartItem = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
-  gap: 10px;
-  align-items: center;
+export const TableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin-bottom: 20px;
+`;
+
+export const CartTotalContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
+
+export const EmptyCartMessage = styled.div`
+  background-color: green;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  opacity: 0.5;
+  font-size: 1.2rem;
+`;
+
+export const Table = styled.table`
+  width: 100%;
+  background-color: #f5f5f5;
+  border-collapse: collapse;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+`;
+
+export const TableHeader = styled.thead`
+  background-color: #ddd;
+  font-weight: bold;
+`;
+
+export const TableRow = styled.tr``;
+
+export const TableCell = styled.td`
+  padding: 10px;
+  text-align: center;
+`;
+
+export const CartTotal = styled.div`
+  padding: 15px;
+  background-colore: #f0f0f0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-left: auto;
+  margin-right: 0;
+`;
+
+export const TotalLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin: 5px 0;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  margin: 20px auto;
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+`;
+
+export const CheckoutButton = styled(Button)`
+  padding: 15px;
+  width: 300px;
+  background-color: ${({ disabled }) => (disabled ? "gray" : "#008080")};
+  color: white;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  border-radius: 0; /* Square button */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  text-align: center;
+  font-size: 2rem;
+
+  &:hover {
+    background-color: ${({ disabled }) => (disabled ? "gray" : "#004d4d")};
+  }
+`;
+
+export const ArrowIcon = styled(FaArrowRight)`
+  margin-left: 10px;
+`;
+
+export const DeleteButton = styled(MdDelete)`
+  font-size: 2rem;
+  color: red;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const QuantityInput = styled.input`
+  width: 50px;
 `;
 
 export const ItemInfo = styled.div`
@@ -47,55 +139,4 @@ export const ItemImage = styled.img`
 
 export const ItemDescription = styled.p`
   margin: 0;
-`;
-
-export const ItemPrice = styled.p`
-  margin: 0;
-`;
-
-export const EmptyCartMessage = styled.p`
-  margin: auto;
-`;
-
-export const CartTotal = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 100%;
-  margin-bottom: 20px;
-`;
-
-export const TotalLine = styled.h2`
-  width: 100%;
-  text-align: right;
-`;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-`;
-
-export const CheckoutButton = styled(Button)`
-  padding: 10px;
-  background-color: ${({ disabled }) => (disabled ? "gray" : "#4B59F7")};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-`;
-
-export const ArrowIcon = styled(FaArrowRight)`
-  margin-left: 10px;
-`;
-
-export const DeleteButton = styled(MdDelete)`
-  font-size: 2rem;
-  color: red;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-export const QuantityInput = styled.input`
-  width: 50px;
 `;

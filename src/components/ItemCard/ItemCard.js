@@ -1,5 +1,7 @@
+// src/components/ItemCard/ItemCard.js
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import CircleDivider from "../CircleDivider/CircleDivider"; // Import the new component
 import {
   ItemsContainer,
   ItemContainer,
@@ -7,18 +9,13 @@ import {
   ItemPrice,
   ItemDescription,
   AddToCartButton,
-  Divider,
-  LeftCircleWrapper,
-  RightCircleWrapper,
-  Circle,
-  DividerText,
 } from "./ItemCard.element";
 import { CartContext } from "../CartContext";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ClipLoader } from "react-spinners";
-import { itemData } from "./ItemData";
+
 
 function ItemCard() {
   const { addToCart } = useContext(CartContext);
@@ -69,19 +66,7 @@ function ItemCard() {
 
   return (
     <>
-      <Divider>
-        <LeftCircleWrapper>
-          {[...Array(25)].map((_, index) => (
-            <Circle key={index} />
-          ))}
-        </LeftCircleWrapper>
-        <DividerText>PIXEL</DividerText>
-        <RightCircleWrapper>
-          {[...Array(25)].map((_, index) => (
-            <Circle key={index} />
-          ))}
-        </RightCircleWrapper>
-      </Divider>
+      <CircleDivider />
       <ItemsContainer>
         {items.map((item) => (
           <ItemContainer key={item.id}>

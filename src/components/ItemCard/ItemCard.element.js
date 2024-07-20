@@ -52,6 +52,7 @@ export const ItemsContainer = styled.div`
   max-width: 1500px;
 
   @media (max-width: 768px) {
+    margin-top: 20px;
     width: 100%;
     padding: 0 10px; /* Add padding on smaller screens */
   }
