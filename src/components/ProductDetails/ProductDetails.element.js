@@ -3,7 +3,19 @@ import { Container, Button } from "../../globalStyles";
 
 export const MainContainer = styled(Container)`
   margin-top: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+`;
+
+export const ProductContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 2rem;
+`;
+
+export const ProductImage = styled.img`
+  width: 50%;
+  object-fit: cover;
 `;
 
 export const ProductTitle = styled.h1`
@@ -12,31 +24,27 @@ export const ProductTitle = styled.h1`
   margin-bottom: 1rem;
 `;
 
-export const ProductContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch; /* Make ProductImage and ProductInfo the same height */
-  margin-top: 2rem;
-  padding: 20px;
+export const PageTitle = styled.h1`
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 `;
-
-export const ProductImage = styled.img`
-  width: 50%;
-  object-fit: cover;
-  border-radius: 10px;
-`;
-
 export const ProductDetailsContainer = styled.div``;
 
 export const ProductInfo = styled.div`
   padding: 20px;
-  width: 45%;
+  width: 49%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: lightgray;
-  border-radius: 10px;
+  background-color: rgba(
+    139,
+    192,
+    198,
+    0.5
+  ); /* Adjusted color with alpha channel for transparency */
 `;
+
 export const ProductPrice = styled.p`
   font-size: 1.5rem;
   margin-bottom: 2rem;
@@ -58,4 +66,9 @@ export const AddToCartButton = styled(Button)`
   padding: 20px;
   font-size: 1.5rem;
   border-radius: 0;
+  background-color: teal;
+
+  &:hover {
+    background-color: #004d4d; // Match your app's hover color
+  }
 `;

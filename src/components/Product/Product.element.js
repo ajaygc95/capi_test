@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../globalStyles";
+import { Link } from "react-router-dom";
 
 // Horizontal Divider with Pink Circles and PIXEL Text
 export const Divider = styled.div`
@@ -76,6 +77,11 @@ export const ItemContainer = styled.div`
     max-width: 100%; /* Full width on mobile */
     height: auto; /* Auto height for flexibility */
   }
+`;
+
+export const ItemLink = styled(Link)`
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit text color */
 `;
 
 export const ItemImage = styled.img`
