@@ -11,9 +11,10 @@ import {
   CartIconBadge,
   CartIconContainer,
   CartIcon,
-  LogoImage,
+  NavLinks,
   MobileMenu,
-  MobileMenuItem,
+  MobileMenuLink,
+  LogoImage,
 } from "./Navbar.elements";
 import logoImage from "../../images/shihtzu.png"; // Ensure you have a logo image in the specified path
 
@@ -23,7 +24,7 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const { getTotalCount } = useContext(CartContext);
+  const { cart, getTotalCount } = useContext(CartContext);
 
   return (
     <>
@@ -39,20 +40,27 @@ function Navbar() {
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
+            <NavLinks to="/cart" onClick={closeMobileMenu}>
+              <CartIconContainer>
+                <CartIcon />
+                {getTotalCount() > 0 && (
+                  <CartIconBadge>{getTotalCount()}</CartIconBadge>
+                )}
+              </CartIconContainer>
+            </NavLinks>
           </NavbarContainer>
-          {click && (
-            <MobileMenu>
-              <MobileMenuItem to="/cart" onClick={closeMobileMenu}>
-                <CartIconContainer>
-                  <CartIcon />
-                  {getTotalCount() > 0 && (
-                    <CartIconBadge>{getTotalCount()}</CartIconBadge>
-                  )}
-                </CartIconContainer>
-              </MobileMenuItem>
-            </MobileMenu>
-          )}
         </Nav>
+        <MobileMenu click={click}>
+          <MobileMenuLink to="/cart" onClick={closeMobileMenu}>
+            <CartIconContainer>
+              <CartIcon />
+              {getTotalCount() > 0 && (
+                <CartIconBadge>{getTotalCount()}</CartIconBadge>
+              )}
+            </CartIconContainer>
+          </MobileMenuLink>
+          {/* Add other mobile menu links here if needed */}
+        </MobileMenu>
       </IconContext.Provider>
     </>
   );

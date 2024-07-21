@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   CheckoutContainer,
+  CheckoutTitle,
   InfoContainer,
-  UserInfo,
-  CardInfo,
-  TotalPrice,
-  CheckoutForm,
+  UserInformationBox,
+  FormContainer,
   FormLabel,
   FormInput,
-  FormSubmitButton,
-  CheckoutTitle,
-  MainContainer,
-  FormContainer,
-  TotalContainer,
-  TotalLine,
-  UserInformationBox,
+  CardDetailsBox,
   RighInfoContainer,
-  TotalContainerBox,
+  TotalContainer,
+  TotalDetails,
+  TotalLabel,
+  TotalValue,
+  FormSubmitButton,
+  MainContainer,
 } from "./Checkout.element";
-import { useLocation } from "react-router-dom";
+import { CartContext } from "./../CartContext"; // Import your CartContext
 
 function Checkout() {
-  const location = useLocation();
-  const totalPrice = location.state ? location.state.totalPrice : 0;
+  const { cart } = useContext(CartContext); // Access cart from CartContext
+
+  // Calculate the subtotal, tax, and total
+  const calculateSubtotal = () =>
+    cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const subtotal = calculateSubtotal();
+  const tax = subtotal * 0.07; // Assuming 7% tax rate
+  const total = subtotal + tax;
+
   return (
     <MainContainer>
       <CheckoutTitle>Checkout</CheckoutTitle>
@@ -48,14 +53,14 @@ function Checkout() {
             </FormContainer>
             <FormContainer>
               <FormLabel>Birth Date</FormLabel>
-              <FormInput type="text" name="address" />
+              <FormInput type="text" name="birthDate" />
             </FormContainer>
             <FormContainer>
               <FormLabel>Phone Number</FormLabel>
-              <FormInput type="number" name="address" />
+              <FormInput type="tel" name="phoneNumber" />
             </FormContainer>
           </UserInformationBox>
-          <UserInformationBox>
+          <CardDetailsBox>
             <h2>Card Information</h2>
             <FormContainer>
               <FormLabel>Card Number</FormLabel>
@@ -69,14 +74,23 @@ function Checkout() {
               <FormLabel>CVV</FormLabel>
               <FormInput type="text" name="cvv" />
             </FormContainer>
-          </UserInformationBox>
+          </CardDetailsBox>
         </InfoContainer>
         <RighInfoContainer>
           <TotalContainer>
-            <TotalLine>Subtotal: ${totalPrice}</TotalLine>
-            <TotalLine>Tax: $0</TotalLine>
-            <TotalLine>Total: ${totalPrice}</TotalLine>
-            <FormSubmitButton type="submit">Confirm Pay</FormSubmitButton>
+            <TotalDetails>
+              <TotalLabel>Subtotal:</TotalLabel>
+              <TotalValue>${subtotal.toFixed(2)}</TotalValue>
+            </TotalDetails>
+            <TotalDetails>
+              <TotalLabel>Tax:</TotalLabel>
+              <TotalValue>${tax.toFixed(2)}</TotalValue>
+            </TotalDetails>
+            <TotalDetails>
+              <TotalLabel>Total:</TotalLabel>
+              <TotalValue>${total.toFixed(2)}</TotalValue>
+            </TotalDetails>
+            <FormSubmitButton type="submit">Place Order</FormSubmitButton>
           </TotalContainer>
         </RighInfoContainer>
       </CheckoutContainer>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Button } from "../../globalStyles";
 import { FaArrowRight } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -11,6 +12,7 @@ export const CartHeader = styled.h1`
 
 export const CartItems = styled.div`
   width: 80%;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
 
@@ -52,20 +54,20 @@ export const Table = styled.table`
 `;
 
 export const TableHeader = styled.thead`
-  background-color: #ddd;
+  background-color: #dcdfdf;
   font-weight: bold;
 `;
 
 export const TableRow = styled.tr``;
 
 export const TableCell = styled.td`
-  padding: 10px;
+  padding: 25px 20px;
   text-align: center;
 `;
 
 export const CartTotal = styled.div`
   padding: 15px;
-  background-colore: #f0f0f0;
+  background-color: #f0f0f0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -100,13 +102,18 @@ export const CheckoutButton = styled(Button)`
   border-radius: 0; /* Square button */
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   text-align: center;
   font-size: 2rem;
+  text-decoration: none; /* Remove underline */
 
   &:hover {
     background-color: ${({ disabled }) => (disabled ? "gray" : "#004d4d")};
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const ArrowIcon = styled(FaArrowRight)`
@@ -114,7 +121,7 @@ export const ArrowIcon = styled(FaArrowRight)`
 `;
 
 export const DeleteButton = styled(MdDelete)`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: red;
 
   &:hover {
@@ -124,6 +131,24 @@ export const DeleteButton = styled(MdDelete)`
 
 export const QuantityInput = styled.input`
   width: 50px;
+  border: none;
+  background-color: #eaeaea;
+  text-align: center;
+  height: 50px;
+  font-size: 1rem;
+  margin-top: 15px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: #d9d9d9;
+  }
 `;
 
 export const ItemInfo = styled.div`

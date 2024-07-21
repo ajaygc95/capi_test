@@ -20,8 +20,8 @@ import {
   EmptyCartMessage,
   TableContainer,
   CartTotalContainer,
+  StyledLink,
 } from "./Cart.element";
-import { Link } from "react-router-dom";
 
 function Cart() {
   const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
@@ -68,9 +68,7 @@ function Cart() {
                   <TableCell>
                     <b>Subtotal</b>
                   </TableCell>
-                  <TableCell>
-                    <b>Action</b>
-                  </TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
               </TableHeader>
               <tbody>
@@ -140,7 +138,7 @@ function Cart() {
           </CartTotalContainer>
         </TableContainer>
         <ButtonWrapper>
-          <Link
+          <StyledLink
             to={{
               pathname: "/checkout",
               state: { totalPrice: totalPrice },
@@ -154,7 +152,7 @@ function Cart() {
               Checkout
               <ArrowIcon />
             </CheckoutButton>
-          </Link>
+          </StyledLink>
         </ButtonWrapper>
       </CartItems>
     </>
