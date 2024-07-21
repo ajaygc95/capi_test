@@ -1,7 +1,7 @@
 import { Checkout, Navbar, Policy, WebHook, Footer } from "./components";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
-import ItemCard from "./components/ItemCard/ItemCard";
+import Product from "./components/Product/Product";
 import Cart from "./components/Cart/Cart";
 import { CartProvider } from "./components/CartContext";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
@@ -27,8 +27,8 @@ function App() {
           <Navbar />
           <MainContent>
             <Routes>
-              <Route path="/" element={<ItemCard />} />
-              <Route path="/products" element={<ItemCard />} />
+              <Route path="/" element={<Product />} />
+              <Route path="/products" element={<Product />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/webhooks" element={<WebHook />} />

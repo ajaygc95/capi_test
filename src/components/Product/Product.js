@@ -1,4 +1,3 @@
-// src/components/ItemCard/ItemCard.js
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import CircleDivider from "../CircleDivider/CircleDivider"; // Import the new component
@@ -9,15 +8,14 @@ import {
   ItemPrice,
   ItemDescription,
   AddToCartButton,
-} from "./ItemCard.element";
+} from "./Product.element";
 import { CartContext } from "../CartContext";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ClipLoader } from "react-spinners";
 
-
-function ItemCard() {
+function Product() {
   const { addToCart } = useContext(CartContext);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -91,4 +89,4 @@ function ItemCard() {
   );
 }
 
-export default ItemCard;
+export default Product;
