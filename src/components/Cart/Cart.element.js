@@ -96,7 +96,7 @@ export const ButtonWrapper = styled.div`
 export const CheckoutButton = styled(Button)`
   padding: 15px;
   width: 300px;
-  background-color: ${({ disabled }) => (disabled ? "gray" : "#008080")};
+  background-color: ${({ disabled }) => (disabled ? "gray" : "#8bc0c6")};
   color: white;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   border-radius: 0; /* Square button */
