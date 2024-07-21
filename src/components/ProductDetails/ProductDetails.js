@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
+  PageTitle,
   ProductContainer,
   ProductImage,
   ProductInfo,
@@ -15,6 +16,8 @@ import {
 } from "./ProductDetails.element";
 import { CartContext } from "../CartContext";
 import { ClipLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -29,13 +32,6 @@ function ProductDetails() {
       .then((response) => {
         setProduct(response.data);
         setLoading(false);
-        // Send "ViewContent" event to Facebook Pixel
-        window.fbq("track", "ViewContent", {
-          content_ids: [response.data.id],
-          content_type: "product",
-          value: response.data.price,
-          currency: "USD",
-        });
       })
       .catch((error) => {
         setError(error);
@@ -46,12 +42,6 @@ function ProductDetails() {
   const handleAddToCart = () => {
     if (product) {
       addToCart(product);
-      window.fbq("track", "AddToCart", {
-        value: product.price,
-        currency: "USD",
-        content_ids: [product.id],
-        content_type: "product",
-      });
     }
   };
 
@@ -73,7 +63,7 @@ function ProductDetails() {
 
   return (
     <MainContainer>
-      <ProductTitle>Product Details</ProductTitle>
+      <PageTitle>Product Details</PageTitle>
       <ProductContainer>
         <ProductImage src={product.image_url} alt={product.name} />
         <ProductInfo>

@@ -1,11 +1,18 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [message, setMessage] = useState(null);
+  const [cart, setCart] = useState(() => {
+    const savedCart = Cookies.get("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    Cookies.set("cart", JSON.stringify(cart), { expires: 7 });
+  }, [cart]);
 
   const addToCart = (item) => {
     setCart((currentCart) => {
@@ -26,6 +33,9 @@ export const CartProvider = ({ children }) => {
         return [...currentCart, { ...item, quantity: 1 }];
       }
     });
+
+    // Dismiss any existing toasts before showing a new one
+    toast.dismiss();
     toast.success(`Added ${item.name} to cart.`);
   };
 

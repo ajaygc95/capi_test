@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import CircleDivider from "../CircleDivider/CircleDivider"; // Import the new component
+import CircleDivider from "../CircleDivider/CircleDivider";
 import {
   ItemsContainer,
   ItemContainer,
+  ItemLink,
   ItemImage,
   ItemPrice,
   ItemDescription,
   AddToCartButton,
 } from "./Product.element";
 import { CartContext } from "../CartContext";
-import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ClipLoader } from "react-spinners";
 
 function Product() {
@@ -36,21 +34,6 @@ function Product() {
 
   const handleAddToCart = (item) => {
     addToCart(item);
-    axios
-      .post("http://127.0.0.1:8000/api/cart/", item)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    window.fbq("track", "AddToCart", {
-      value: item.price,
-      currency: "USD",
-      content_ids: [item.id],
-      content_type: "product",
-    });
   };
 
   if (loading) {
@@ -68,23 +51,17 @@ function Product() {
       <ItemsContainer>
         {items.map((item) => (
           <ItemContainer key={item.id}>
-            <Link to={`/product/${item.id}`}>
+            <ItemLink to={`/product/${item.id}`}>
               <ItemImage src={item.image_url} alt="item" />
               <ItemDescription>{item.name}</ItemDescription>
               <ItemPrice>${item.price}</ItemPrice>
-            </Link>
+            </ItemLink>
             <AddToCartButton onClick={() => handleAddToCart(item)}>
               Add to Cart
             </AddToCartButton>
           </ItemContainer>
         ))}
       </ItemsContainer>
-      <ToastContainer
-        position="top-center"
-        hideProgressBar={false}
-        newestOnTop={false}
-        autoClose={500}
-      />
     </>
   );
 }
