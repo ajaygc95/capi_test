@@ -30,18 +30,7 @@ function Cart() {
     0
   );
 
-  const handleCheckout = () => {
-    window.fbq("track", "InitiateCheckout", {
-      value: totalPrice,
-      currency: "USD",
-      contents: cart.map((item) => ({
-        id: item.id,
-        quantity: item.quantity,
-        item_price: parseFloat(item.price),
-      })),
-      content_type: "product",
-    });
-  };
+  const handleCheckout = () => {};
 
   return (
     <>

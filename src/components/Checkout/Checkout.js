@@ -63,6 +63,10 @@ function Checkout() {
           <CardDetailsBox>
             <h2>Card Information</h2>
             <FormContainer>
+              <FormLabel>Name on Card</FormLabel>
+              <FormInput type="text" name="cardNumber" />
+            </FormContainer>
+            <FormContainer>
               <FormLabel>Card Number</FormLabel>
               <FormInput type="text" name="cardNumber" />
             </FormContainer>
