@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import CircleDivider from "../CircleDivider/CircleDivider";
 import {
   ItemsContainer,
@@ -12,6 +11,7 @@ import {
 } from "./Product.element";
 import { CartContext } from "../CartContext";
 import { ClipLoader } from "react-spinners";
+import { productData } from "../pages/HomePage/Data"; 
 
 function Product() {
   const { addToCart } = useContext(CartContext);
@@ -20,16 +20,10 @@ function Product() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("https://capicore.azurewebsites.net/api/products/")
-      .then((response) => {
-        setItems(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
+    setTimeout(() => {
+      setItems(productData);
+      setLoading(false);
+    }, 100);
   }, []);
 
   const handleAddToCart = (item) => {
@@ -52,7 +46,8 @@ function Product() {
         {items.map((item) => (
           <ItemContainer key={item.id}>
             <ItemLink to={`/product/${item.id}`}>
-              <ItemImage src={item.image_url} alt="item" />
+              <ItemImage src={item.image_url} alt={item.name} />{" "}
+              {/* Directly using the string URL */}
               <ItemDescription>{item.name}</ItemDescription>
               <ItemPrice>${item.price}</ItemPrice>
             </ItemLink>
