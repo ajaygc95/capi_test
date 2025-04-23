@@ -11,14 +11,14 @@ import {
 } from "./Product.element";
 import { CartContext } from "../CartContext";
 import { ClipLoader } from "react-spinners";
-import { productData } from "../pages/HomePage/Data"; 
+import { productData } from "../pages/HomePage/Data";
 
 function Product() {
   const { addToCart } = useContext(CartContext);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  window.fbq("track", "PageView");
   useEffect(() => {
     setTimeout(() => {
       setItems(productData);
