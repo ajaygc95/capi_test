@@ -18,8 +18,14 @@ function Product() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  window.fbq("track", "PageView");
+
   useEffect(() => {
+    // Fire the Facebook Pixel page view event when this component mounts
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", "PageView");
+    }
+
+    // Simulate loading delay for data fetching
     setTimeout(() => {
       setItems(productData);
       setLoading(false);
@@ -46,8 +52,7 @@ function Product() {
         {items.map((item) => (
           <ItemContainer key={item.id}>
             <ItemLink to={`/product/${item.id}`}>
-              <ItemImage src={item.image_url} alt={item.name} />{" "}
-              {/* Directly using the string URL */}
+              <ItemImage src={item.image_url} alt={item.name} />
               <ItemDescription>{item.name}</ItemDescription>
               <ItemPrice>${item.price}</ItemPrice>
             </ItemLink>

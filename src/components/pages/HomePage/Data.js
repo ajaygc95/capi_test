@@ -54,40 +54,35 @@ export const productData = [
   {
     id: "pillow-1",
     name: "Shih Tzu Custom Pillow",
-    image_url:
-      "https://master.de5gcwki9yw8j.amplifyapp.com/images/shih_tzu_picture_on_pillow.jpeg", // Updated image
+    image_url: "../../images/bag.jpeg", // Updated image
     price: 34.99, // Example price
     description: "A comfortable decorative pillow featuring a Shih Tzu.",
   },
   {
     id: "mug-2",
     name: "Shih Tzu Coffee Mug",
-    image_url:
-      "https://master.de5gcwki9yw8j.amplifyapp.com/images/shihtzu_mug.jpeg", // Updated image
+    image_url: "../../images/shihtzu_mug.jpeg", // Updated image
     price: 15.99, // Example price
     description: "Start your day right with this cute Shih Tzu coffee mug.",
   },
   {
     id: "phone-case-3",
     name: "Protective Phone Case",
-    image_url:
-      "https://master.de5gcwki9yw8j.amplifyapp.com/images/phone_case.jpeg", // Updated image
+    image_url: "../../images/phone_case.jpeg", // Updated image
     price: 24.5, // Example price
     description: "A durable and stylish case to protect your smartphone.",
   },
   {
     id: "sweatshirt-4",
     name: "Shih Tzu Sweatshirt",
-    image_url:
-      "https://master.de5gcwki9yw8j.amplifyapp.com/images/sweatshirt_shihtzu.jpeg", // Updated image
+    image_url: "../../images/sweatshirt_shihtzu.jpeg", // Updated image
     price: 49.99, // Example price
     description: "Stay cozy with this comfortable Shih Tzu themed sweatshirt.",
   },
   {
     id: "water-bottle-5",
     name: "Insulated Water Bottle",
-    image_url:
-      "https://master.de5gcwki9yw8j.amplifyapp.com/images/watter_bottle.jpeg", // Corrected typo: watter -> water? Assuming water_bottle.jpeg
+    image_url: "../../images/watter_bottle.jpeg", // Corrected typo: watter -> water? Assuming water_bottle.jpeg
     price: 19.95, // Example price
     description: "Keep your drinks cold or hot with this insulated bottle.",
     // If the filename is literally watter_bottle.jpeg, use that instead:
@@ -96,15 +91,14 @@ export const productData = [
   {
     id: "bag-6", // Changed ID
     name: "Everyday Shoulder Bag", // Slightly different name
-    image_url: "https://master.de5gcwki9yw8j.amplifyapp.com/images/bag.jpeg", // Using bag.jpeg from the list
+    image_url: "../../images/bag.jpeg", // Using bag.jpeg from the list
     price: 45.99, // Kept original price example
     description: "A fashionable and versatile shoulder bag.",
   },
   {
     id: "cup-7",
     name: "Shih Tzu Pink Cup",
-    image_url:
-      "https://master.de5gcwki9yw8j.amplifyapp.com/images/shihtzu_on_cup_pink.jpeg", // Added another item
+    image_url: "../../images/shihtzu_on_cup_pink.jpeg", // Added another item
     price: 14.99, // Example price
     description: "A lovely pink cup featuring a Shih Tzu.",
   },
